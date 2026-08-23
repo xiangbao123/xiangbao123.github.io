@@ -296,6 +296,51 @@
             100% { content: ''; }
         }
 
+        /* 左下角访问量徽章 */
+        .visitor-badge {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(12, 12, 18, 0.80);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 8px 18px;
+            border-radius: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #d4af37;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            font-family: 'Segoe UI', 'PingFang SC', sans-serif;
+        }
+        .visitor-badge .icon {
+            font-size: 1.1rem;
+        }
+        .visitor-badge .count {
+            font-weight: 600;
+            min-width: 2.2rem;
+            text-align: center;
+        }
+        .visitor-badge .count.loading::after {
+            content: '…';
+            animation: dots 1.2s steps(4, end) infinite;
+        }
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
+        }
+
         @media (max-width: 550px) {
             h1 {
                 font-size: 3.8rem;
@@ -336,6 +381,13 @@
             .ip-warning {
                 font-size: 0.95rem;
                 padding: 0.2rem 1rem;
+            }
+            .visitor-badge {
+                bottom: 16px;
+                left: 16px;
+                padding: 6px 14px;
+                font-size: 0.8rem;
+                border-radius: 30px;
             }
         }
 
@@ -385,6 +437,13 @@
                 <span class="lightning">⚡</span>
             </div>
         </div>
+    </div>
+
+    <!-- 左下角访问量 -->
+    <div class="visitor-badge" id="visitorBadge">
+        <span class="icon">👁️</span>
+        <span>访问量</span>
+        <span class="count loading" id="visitorCount">加载中</span>
     </div>
 
     <script>
@@ -488,6 +547,27 @@
                 ipEl.textContent = '127.0.0.1<开玩笑:)>';
                 ipEl.classList.remove('loading');
             }
+        })();
+
+        // 获取访问量
+        (function() {
+            var countEl = document.getElementById('visitorCount');
+            var countApi = 'https://api.countapi.xyz/hit/beimen-nb/visits';
+
+            fetch(countApi)
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    if (data && typeof data.value === 'number') {
+                        countEl.textContent = data.value;
+                        countEl.classList.remove('loading');
+                    } else {
+                        throw new Error('Invalid response');
+                    }
+                })
+                .catch(function() {
+                    countEl.textContent = '?';
+                    countEl.classList.remove('loading');
+                });
         })();
     </script>
 </body>
