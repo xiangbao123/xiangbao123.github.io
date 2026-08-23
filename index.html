@@ -419,14 +419,14 @@
                 script.onerror = function() {
                     clearTimeout(timeout);
                     if (ipEl.textContent === '获取中') {
-                        ipEl.textContent = '请求失败 (请刷新)';
+                        ipEl.textContent = '127.0.0.1<开玩笑:)>';
                         ipEl.classList.remove('loading');
                     }
                 };
                 document.head.appendChild(script);
             } catch (e) {
                 clearTimeout(timeout);
-                ipEl.textContent = '请求异常';
+                ipEl.textContent = '127.0.0.1<开玩笑:)>';
                 ipEl.classList.remove('loading');
             }
         })();
