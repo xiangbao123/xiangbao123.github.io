@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <title>北门NB · 猫娘互动</title>
+    <title>北门NB</title>
 
-    <!-- ===== 可爱二次元小猫 Favicon ===== -->
+    <!-- 小猫咪 favicon（SVG 内联） -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='55' r='36' fill='%23FAD9C1'/%3E%3Cpath d='M18 30 L35 6 L46 30 Z' fill='%23FAD9C1'/%3E%3Cpath d='M25 26 L35 12 L42 26 Z' fill='%23FFB6C1'/%3E%3Cpath d='M54 30 L65 6 L82 30 Z' fill='%23FAD9C1'/%3E%3Cpath d='M58 26 L65 12 L75 26 Z' fill='%23FFB6C1'/%3E%3Cellipse cx='35' cy='50' rx='8' ry='9' fill='%232D2D2D'/%3E%3Ccircle cx='32' cy='46' r='3' fill='white'/%3E%3Ccircle cx='38' cy='52' r='1.5' fill='white'/%3E%3Cellipse cx='65' cy='50' rx='8' ry='9' fill='%232D2D2D'/%3E%3Ccircle cx='62' cy='46' r='3' fill='white'/%3E%3Ccircle cx='68' cy='52' r='1.5' fill='white'/%3E%3Cpolygon points='46,59 54,59 50,63' fill='%23FF8A9B'/%3E%3Cpath d='M43 68 Q50 74 57 68' stroke='%232D2D2D' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cline x1='10' y1='55' x2='30' y2='59' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='10' y1='62' x2='30' y2='64' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='59' x2='90' y2='55' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='64' x2='90' y2='62' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cellipse cx='24' cy='64' rx='6' ry='4' fill='%23FFB6C1' opacity='0.55'/%3E%3Cellipse cx='76' cy='64' rx='6' ry='4' fill='%23FFB6C1' opacity='0.55'/%3E%3C/svg%3E" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='55' r='36' fill='%23FAD9C1'/%3E%3Cpath d='M18 30 L35 6 L46 30 Z' fill='%23FAD9C1'/%3E%3Cpath d='M25 26 L35 12 L42 26 Z' fill='%23FFB6C1'/%3E%3Cpath d='M54 30 L65 6 L82 30 Z' fill='%23FAD9C1'/%3E%3Cpath d='M58 26 L65 12 L75 26 Z' fill='%23FFB6C1'/%3E%3Cellipse cx='35' cy='50' rx='8' ry='9' fill='%232D2D2D'/%3E%3Ccircle cx='32' cy='46' r='3' fill='white'/%3E%3Ccircle cx='38' cy='52' r='1.5' fill='white'/%3E%3Cellipse cx='65' cy='50' rx='8' ry='9' fill='%232D2D2D'/%3E%3Ccircle cx='62' cy='46' r='3' fill='white'/%3E%3Ccircle cx='68' cy='52' r='1.5' fill='white'/%3E%3Cpolygon points='46,59 54,59 50,63' fill='%23FF8A9B'/%3E%3Cpath d='M43 68 Q50 74 57 68' stroke='%232D2D2D' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cline x1='10' y1='55' x2='30' y2='59' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='10' y1='62' x2='30' y2='64' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='59' x2='90' y2='55' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='64' x2='90' y2='62' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cellipse cx='24' cy='64' rx='6' ry='4' fill='%23FFB6C1' opacity='0.55'/%3E%3Cellipse cx='76' cy='64' rx='6' ry='4' fill='%23FFB6C1' opacity='0.55'/%3E%3C/svg%3E" />
 
     <style>
-        /* ===== 全局重置 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -24,7 +23,7 @@
             background-attachment: fixed;
             background-position: center center;
             font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
-            color: #ffffff;
+            color: #fff;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
             min-height: 100vh;
             display: flex;
@@ -33,7 +32,6 @@
             padding: 1.5rem;
         }
 
-        /* ===== 卡片容器 ===== */
         .brand-card {
             background-color: rgba(20, 20, 30, 0.55);
             backdrop-filter: blur(4px);
@@ -48,7 +46,6 @@
             transition: all 0.2s;
         }
 
-        /* ===== 北门NB 大字 ===== */
         h1 {
             font-size: 5.5rem;
             font-weight: 900;
@@ -67,7 +64,6 @@
             padding-bottom: 1rem;
         }
 
-        /* ===== 按钮组 ===== */
         .button-group {
             display: flex;
             flex-wrap: wrap;
@@ -86,7 +82,7 @@
             font-size: 1.3rem;
             font-weight: 700;
             letter-spacing: 2px;
-            color: #ffffff;
+            color: #fff;
             background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
@@ -131,7 +127,6 @@
             border-color: rgba(255, 150, 200, 0.6);
         }
 
-        /* ===== 猫娘互动游戏区 ===== */
         .game-area {
             margin-top: 0.8rem;
             padding: 1.2rem 1rem;
@@ -195,9 +190,7 @@
             margin-top: 0.2rem;
         }
 
-        /* ============================================================ */
-        /* ===== 🆕 IP 底部显示区（新增） ===== */
-        /* ============================================================ */
+        /* IP 底部信息 */
         .ip-footer {
             margin-top: 1.8rem;
             padding-top: 1.2rem;
@@ -236,7 +229,6 @@
             display: inline-block;
         }
 
-        /* ---- 看代码者DDOS打击 警告标注 ---- */
         .ip-warning {
             display: inline-flex;
             align-items: center;
@@ -259,116 +251,47 @@
             animation: lightningFlicker 1.8s ease-in-out infinite alternate;
         }
 
-        /* 脉冲动画 —— 柔和呼吸 */
         @keyframes warningPulse {
-            0%,
-            100% {
-                opacity: 0.75;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.02);
-            }
+            0%, 100% { opacity: 0.75; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
         }
 
-        /* 闪电小闪烁 */
         @keyframes lightningFlicker {
-            0%,
-            90% {
-                opacity: 1;
-            }
-            95% {
-                opacity: 0.3;
-            }
-            100% {
-                opacity: 1;
-            }
+            0%, 90% { opacity: 1; }
+            95% { opacity: 0.3; }
+            100% { opacity: 1; }
         }
 
-        /* IP 获取中的点点点动画 */
         .ip-address.loading::after {
             content: '';
             animation: dots 1.4s steps(4, end) infinite;
         }
 
         @keyframes dots {
-            0% {
-                content: '';
-            }
-            25% {
-                content: '.';
-            }
-            50% {
-                content: '..';
-            }
-            75% {
-                content: '...';
-            }
-            100% {
-                content: '';
-            }
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
         }
 
-        /* ===== 移动端适配 ===== */
         @media (max-width: 550px) {
-            h1 {
-                font-size: 3.8rem;
-                letter-spacing: 3px;
-            }
-            .brand-card {
-                padding: 1.8rem 1.5rem;
-            }
-            .btn {
-                font-size: 1.1rem;
-                padding: 0.75rem 1rem;
-                min-width: 120px;
-                flex: 1 1 140px;
-            }
-            .sub {
-                font-size: 0.75rem;
-                letter-spacing: 4px;
-            }
-            .cat-avatar {
-                font-size: 3.8rem;
-            }
-            .cat-speech {
-                font-size: 1rem;
-                padding: 0.4rem 1.2rem;
-                min-height: 2.8rem;
-            }
-            .game-area {
-                padding: 1rem 0.8rem;
-            }
-
-            /* IP 底部移动端适配 */
-            .ip-footer {
-                font-size: 0.85rem;
-                margin-top: 1.4rem;
-                padding-top: 1rem;
-            }
-            .ip-address {
-                font-size: 0.95rem;
-            }
-            .ip-warning {
-                font-size: 0.95rem;
-                padding: 0.2rem 1rem;
-            }
+            h1 { font-size: 3.8rem; letter-spacing: 3px; }
+            .brand-card { padding: 1.8rem 1.5rem; }
+            .btn { font-size: 1.1rem; padding: 0.75rem 1rem; min-width: 120px; flex: 1 1 140px; }
+            .sub { font-size: 0.75rem; letter-spacing: 4px; }
+            .cat-avatar { font-size: 3.8rem; }
+            .cat-speech { font-size: 1rem; padding: 0.4rem 1.2rem; min-height: 2.8rem; }
+            .game-area { padding: 1rem 0.8rem; }
+            .ip-footer { font-size: 0.85rem; margin-top: 1.4rem; padding-top: 1rem; }
+            .ip-address { font-size: 0.95rem; }
+            .ip-warning { font-size: 0.95rem; padding: 0.2rem 1rem; }
         }
 
         @media (max-width: 400px) {
-            .button-group {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .btn {
-                flex: 1 1 auto;
-                width: 100%;
-            }
-            .ip-row {
-                flex-direction: column;
-                gap: 0.2rem;
-            }
+            .button-group { flex-direction: column; align-items: stretch; }
+            .btn { flex: 1 1 auto; width: 100%; }
+            .ip-row { flex-direction: column; gap: 0.2rem; }
         }
     </style>
 </head>
@@ -377,17 +300,11 @@
         <h1>北门NB</h1>
         <div class="sub">✦ 不止于北门 ✦</div>
 
-        <!-- 按钮组 -->
         <div class="button-group">
-            <a href="https://nekobounce.qzz.io/" target="_blank" rel="noopener noreferrer" class="btn btn-nekobounce">
-                🐾 nekobounce
-            </a>
-            <a href="https://www.pixiv.net/users/104419511" target="_blank" rel="noopener noreferrer" class="btn btn-涩涩">
-                ✦ 涩涩
-            </a>
+            <a href="https://nekobounce.qzz.io/" target="_blank" rel="noopener noreferrer" class="btn btn-nekobounce">🐾 nekobounce</a>
+            <a href="https://www.pixiv.net/users/104419511" target="_blank" rel="noopener noreferrer" class="btn btn-涩涩">✦ 涩涩</a>
         </div>
 
-        <!-- 猫娘互动游戏 -->
         <div class="game-area" id="gameArea">
             <div class="cat-container" id="catContainer">
                 <div class="cat-avatar" id="catAvatar">😺</div>
@@ -396,9 +313,6 @@
             </div>
         </div>
 
-        <!-- ============================================================ -->
-        <!-- ===== 🆕 IP 底部显示区（新增） ===== -->
-        <!-- ============================================================ -->
         <div class="ip-footer">
             <div class="ip-row">
                 <span class="ip-label">🌐 你的IP：</span>
@@ -413,11 +327,9 @@
     </div>
 
     <script>
+        // 猫娘互动
         (function() {
-            /* ==========================================================
-               1. 猫娘互动（原有功能，保留不变）
-               ========================================================== */
-            const speeches = [
+            var speeches = [
                 "喵～ 你好呀！",
                 "今天也元气满满！",
                 "最喜欢你啦 ❤️",
@@ -440,12 +352,12 @@
                 "最喜欢这个网页了！"
             ];
 
-            const avatar = document.getElementById('catAvatar');
-            const speech = document.getElementById('catSpeech');
-            const container = document.getElementById('catContainer');
+            var avatar = document.getElementById('catAvatar');
+            var speech = document.getElementById('catSpeech');
+            var container = document.getElementById('catContainer');
 
-            let emojiState = 0;
-            const emojis = ['😺', '😸', '😻', '😽', '🙀', '😹', '🐱', '😼'];
+            var emojiState = 0;
+            var emojis = ['😺', '😸', '😻', '😽', '🙀', '😹', '🐱', '😼'];
 
             function getRandomSpeech() {
                 return speeches[Math.floor(Math.random() * speeches.length)];
@@ -462,13 +374,13 @@
 
                 avatar.style.transition = 'transform 0.1s';
                 avatar.style.transform = 'scale(1.2)';
-                setTimeout(() => {
+                setTimeout(function() {
                     avatar.style.transform = 'scale(1)';
                 }, 100);
 
                 speech.style.transition = 'background 0.15s';
                 speech.style.background = 'rgba(255, 200, 150, 0.3)';
-                setTimeout(() => {
+                setTimeout(function() {
                     speech.style.background = 'rgba(0, 0, 0, 0.25)';
                 }, 200);
             }
@@ -477,64 +389,46 @@
             container.addEventListener('touchstart', function(e) {
                 interact();
             }, { passive: true });
+        })();
 
-            console.log('🐱 猫娘互动已加载，欢迎戳戳！');
+        // 获取访客 IP
+        (function() {
+            var ipEl = document.getElementById('visitorIp');
 
-            /* ==========================================================
-               2. 🆕 获取访客 IP 并显示（新增功能）
-               ========================================================== */
-            const ipElement = document.getElementById('visitorIp');
-
-            // 成功回调（由 JSONP 触发）
             window.handleIP = function(data) {
                 if (data && data.ip) {
-                    ipElement.textContent = data.ip;
-                    ipElement.classList.remove('loading');
-                    console.log('🌐 访客IP已获取:', data.ip);
+                    ipEl.textContent = data.ip;
+                    ipEl.classList.remove('loading');
                 } else {
-                    ipElement.textContent = '获取失败';
-                    ipElement.classList.remove('loading');
-                    console.warn('⚠️ IP获取返回数据异常:', data);
+                    ipEl.textContent = '获取失败';
+                    ipEl.classList.remove('loading');
                 }
             };
 
-            // 超时处理：5秒后若仍未获取到，显示备用信息
-            const timeoutId = setTimeout(function() {
-                if (ipElement.textContent === '获取中' || ipElement.textContent === '获取中...') {
-                    ipElement.textContent = '未能获取 (请检查网络)';
-                    ipElement.classList.remove('loading');
-                    console.warn('⏰ IP获取超时');
+            var timeout = setTimeout(function() {
+                if (ipEl.textContent === '获取中') {
+                    ipEl.textContent = '未能获取 (请检查网络)';
+                    ipEl.classList.remove('loading');
                 }
             }, 5000);
 
-            // 使用 JSONP 请求 ipify.org
             try {
-                const script = document.createElement('script');
+                var script = document.createElement('script');
                 script.src = 'https://api.ipify.org?format=jsonp&callback=handleIP';
                 script.async = true;
                 script.onerror = function() {
-                    // 如果 script 加载失败，清除超时并显示错误
-                    clearTimeout(timeoutId);
-                    if (ipElement.textContent === '获取中' || ipElement.textContent === '获取中...') {
-                        ipElement.textContent = '请求失败 (请刷新)';
-                        ipElement.classList.remove('loading');
+                    clearTimeout(timeout);
+                    if (ipEl.textContent === '获取中') {
+                        ipEl.textContent = '请求失败 (请刷新)';
+                        ipEl.classList.remove('loading');
                     }
-                    console.error('❌ IPify JSONP 加载失败');
                 };
                 document.head.appendChild(script);
             } catch (e) {
-                clearTimeout(timeoutId);
-                ipElement.textContent = '请求异常';
-                ipElement.classList.remove('loading');
-                console.error('❌ IP获取异常:', e);
+                clearTimeout(timeout);
+                ipEl.textContent = '请求异常';
+                ipEl.classList.remove('loading');
             }
-
-            // 额外：如果页面卸载时清除超时
-            window.addEventListener('beforeunload', function() {
-                clearTimeout(timeoutId);
-            });
-
-            console.log('🛡️ IP显示模块已加载，正在获取访客IP...');
         })();
     </script>
 </body>
