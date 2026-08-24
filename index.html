@@ -273,14 +273,28 @@
         }
 
         @keyframes warningPulse {
-            0%, 100% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.02); }
+            0%,
+            100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
         }
 
         @keyframes lightningFlicker {
-            0%, 90% { opacity: 1; }
-            95% { opacity: 0.3; }
-            100% { opacity: 1; }
+            0%,
+            90% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         .ip-address.loading::after {
@@ -289,11 +303,21 @@
         }
 
         @keyframes dots {
-            0% { content: ''; }
-            25% { content: '.'; }
-            50% { content: '..'; }
-            75% { content: '...'; }
-            100% { content: ''; }
+            0% {
+                content: '';
+            }
+            25% {
+                content: '.';
+            }
+            50% {
+                content: '..';
+            }
+            75% {
+                content: '...';
+            }
+            100% {
+                content: '';
+            }
         }
 
         /* 左下角访问量徽章 */
@@ -334,13 +358,177 @@
             animation: dots 1.2s steps(4, end) infinite;
         }
         @keyframes dots {
-            0% { content: ''; }
-            25% { content: '.'; }
-            50% { content: '..'; }
-            75% { content: '...'; }
-            100% { content: ''; }
+            0% {
+                content: '';
+            }
+            25% {
+                content: '.';
+            }
+            50% {
+                content: '..';
+            }
+            75% {
+                content: '...';
+            }
+            100% {
+                content: '';
+            }
         }
 
+        /* ============================================================
+                   北门杯 广告弹窗 — 背景图片版
+                   ============================================================ */
+        .ad-popup {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 200px;
+            height: 200px;
+            max-width: calc(100vw - 60px);
+            max-height: calc(100vw - 60px);
+            aspect-ratio: 1 / 1;
+            border-radius: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(212, 175, 55, 0.08);
+            padding: 0;
+            z-index: 9999;
+            transform: translateX(calc(100% + 40px)) scale(0.9);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', 'PingFang SC', sans-serif;
+            color: #e8e0d0;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            pointer-events: none;
+            user-select: none;
+            overflow: hidden;
+            /* 背景默认半透明，会由JS覆盖 */
+            background: rgba(10, 10, 16, 0.92);
+        }
+
+        .ad-popup.show {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .ad-popup.closing {
+            transform: translateX(calc(100% + 40px)) scale(0.85);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.4s ease-in, opacity 0.35s ease;
+        }
+
+        /* 旋转光晕边框 (保留) */
+        .ad-popup::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 42px;
+            padding: 2px;
+            background: conic-gradient(from 0deg, #d4af37, #f5e6a3, #b8860b, #d4af37, #f5e6a3, #b8860b, #d4af37);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderRotate 6s linear infinite;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        @keyframes borderRotate {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* 关闭按钮 */
+        .ad-popup .ad-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: rgba(200, 190, 175, 0.6);
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            line-height: 1;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-family: inherit;
+            pointer-events: auto;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(2px);
+        }
+        .ad-popup .ad-close:hover {
+            color: #f5e6a3;
+            background: rgba(212, 175, 55, 0.25);
+            transform: rotate(90deg) scale(1.1);
+        }
+        .ad-popup .ad-close:active {
+            transform: rotate(90deg) scale(0.85);
+        }
+
+        /* 标题文字：北门杯 */
+        .ad-popup .ad-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #f5e6a3 0%, #d4af37 40%, #b8860b 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+            padding: 0 6px;
+            text-align: center;
+            word-break: keep-all;
+            flex-shrink: 0;
+            margin-top: 2px;
+            position: relative;
+            z-index: 2;
+            /* 在背景之上 */
+        }
+
+        /* 小字：辽宁最好用的杯子 */
+        .ad-popup .ad-sub {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #c9b896;
+            opacity: 0.9;
+            padding-bottom: 6px;
+            flex-shrink: 0;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 遮罩层（提高文字可读性） */
+        .ad-popup::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 40px;
+            background: rgba(10, 10, 16, 0.35);
+            /* 半透明遮罩 */
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 响应式适配 */
         @media (max-width: 550px) {
             h1 {
                 font-size: 3.8rem;
@@ -389,6 +577,30 @@
                 font-size: 0.8rem;
                 border-radius: 30px;
             }
+
+            .ad-popup {
+                bottom: 20px;
+                right: 20px;
+                width: 160px;
+                height: 160px;
+                border-radius: 32px;
+            }
+            .ad-popup .ad-title {
+                font-size: 1.8rem;
+                letter-spacing: 4px;
+            }
+            .ad-popup .ad-sub {
+                font-size: 0.6rem;
+            }
+            .ad-popup .ad-close {
+                top: 6px;
+                right: 10px;
+                font-size: 1.4rem;
+                padding: 2px 6px;
+            }
+            .ad-popup::after {
+                border-radius: 32px;
+            }
         }
 
         @media (max-width: 400px) {
@@ -403,6 +615,23 @@
             .ip-row {
                 flex-direction: column;
                 gap: 0.2rem;
+            }
+            .ad-popup {
+                width: 140px;
+                height: 140px;
+                border-radius: 28px;
+                bottom: 16px;
+                right: 16px;
+            }
+            .ad-popup .ad-title {
+                font-size: 1.5rem;
+                letter-spacing: 3px;
+            }
+            .ad-popup .ad-sub {
+                font-size: 0.5rem;
+            }
+            .ad-popup::after {
+                border-radius: 28px;
             }
         }
     </style>
@@ -446,7 +675,26 @@
         <span class="count loading" id="visitorCount">加载中</span>
     </div>
 
+    <!-- ============================================================
+    北门杯 广告弹窗 — 背景图片由开发者配置
+    ============================================================ -->
+    <div class="ad-popup" id="adPopup" role="dialog" aria-label="北门杯">
+        <button class="ad-close" id="adClose" aria-label="关闭广告">✕</button>
+        <div class="ad-title">北门杯</div>
+        <div class="ad-sub">辽宁最好用的杯子</div>
+    </div>
+
     <script>
+        // ================================================================
+        // 开发者配置区 — 自由修改背景图片链接
+        // 将 adBackgroundUrl 设置为你的图片 URL，留空则使用纯色背景
+        // ================================================================
+        var adBackgroundUrl = 'https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEZvwABaov6MHGPXhBWvVm_EmcNhAd9LwMAAporAAIPrmFUVH1aKNp_kFs9BA.jpg';
+
+        // ================================================================
+        // 以下为脚本逻辑，无需修改
+        // ================================================================
+
         (function() {
             var speeches = [
                 "喵～ 你好呀！",
@@ -532,7 +780,7 @@
 
             try {
                 var script = document.createElement('script');
-                script.src = 'https://api.ipify.cn?format=jsonp&callback=handleIP';
+                script.src = 'https://api.ipify.org?format=jsonp&callback=handleIP';
                 script.async = true;
                 script.onerror = function() {
                     clearTimeout(timeout);
@@ -568,6 +816,63 @@
                     countEl.textContent = '?';
                     countEl.classList.remove('loading');
                 });
+        })();
+
+        // ================================================================
+        // 北门杯 广告弹窗交互 — 支持背景图片
+        // ================================================================
+        (function() {
+            var popup = document.getElementById('adPopup');
+            var closeBtn = document.getElementById('adClose');
+            var hasClosed = localStorage.getItem('beimen_ad_closed_v2') === 'true';
+
+            // 设置背景图片
+            if (adBackgroundUrl && adBackgroundUrl.trim() !== '') {
+                // 使用多重背景：图片 + 半透明遮罩（通过 linear-gradient 实现）
+                popup.style.background = `linear-gradient(rgba(10,10,16,0.4), rgba(10,10,16,0.4)), url(${adBackgroundUrl}) center/cover no-repeat`;
+                popup.style.border = '1px solid rgba(212,175,55,0.5)';
+            } else {
+                popup.style.background = 'rgba(10,10,16,0.92)';
+            }
+
+            // 如果曾经关闭，直接隐藏
+            if (hasClosed) {
+                popup.style.display = 'none';
+                return;
+            }
+
+            // 延迟显示（5秒）
+            var showTimer = setTimeout(function() {
+                popup.classList.add('show');
+            }, 5000);
+
+            // 关闭函数
+            function closeAd() {
+                if (popup.classList.contains('closing')) return;
+                popup.classList.remove('show');
+                popup.classList.add('closing');
+                localStorage.setItem('beimen_ad_closed_v2', 'true');
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 450);
+            }
+
+            // 只绑定X按钮关闭
+            closeBtn.addEventListener('click', closeAd);
+            closeBtn.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                closeAd();
+            });
+
+            // 阻止弹窗内部点击冒泡，避免误触
+            popup.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // 清理定时器
+            window.addEventListener('beforeunload', function() {
+                clearTimeout(showTimer);
+            });
         })();
     </script>
 </body>
