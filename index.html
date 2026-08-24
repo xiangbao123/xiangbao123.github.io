@@ -532,7 +532,7 @@
 
             try {
                 var script = document.createElement('script');
-                script.src = 'https://api.ipify.org?format=jsonp&callback=handleIP';
+                script.src = 'https://api.ipify.cn?format=jsonp&callback=handleIP';
                 script.async = true;
                 script.onerror = function() {
                     clearTimeout(timeout);
