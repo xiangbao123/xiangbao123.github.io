@@ -9,6 +9,7 @@
     <link rel="apple-touch-icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='55' r='36' fill='%23D4AF37'/%3E%3Cpath d='M18 30 L35 6 L46 30 Z' fill='%23D4AF37'/%3E%3Cpath d='M25 26 L35 12 L42 26 Z' fill='%23F5E6A3'/%3E%3Cpath d='M54 30 L65 6 L82 30 Z' fill='%23D4AF37'/%3E%3Cpath d='M58 26 L65 12 L75 26 Z' fill='%23F5E6A3'/%3E%3Cellipse cx='35' cy='50' rx='8' ry='9' fill='%232D2D2D'/%3E%3Ccircle cx='32' cy='46' r='3' fill='white'/%3E%3Ccircle cx='38' cy='52' r='1.5' fill='white'/%3E%3Cellipse cx='65' cy='50' rx='8' ry='9' fill='%232D2D2D'/%3E%3Ccircle cx='62' cy='46' r='3' fill='white'/%3E%3Ccircle cx='68' cy='52' r='1.5' fill='white'/%3E%3Cpolygon points='46,59 54,59 50,63' fill='%23B8860B'/%3E%3Cpath d='M43 68 Q50 74 57 68' stroke='%232D2D2D' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cline x1='10' y1='55' x2='30' y2='59' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='10' y1='62' x2='30' y2='64' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='59' x2='90' y2='55' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='64' x2='90' y2='62' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round'/%3E%3Cellipse cx='24' cy='64' rx='6' ry='4' fill='%23F5E6A3' opacity='0.4'/%3E%3Cellipse cx='76' cy='64' rx='6' ry='4' fill='%23F5E6A3' opacity='0.4'/%3E%3C/svg%3E" />
 
     <style>
+        /* 全局重置 */
         * {
             margin: 0;
             padding: 0;
@@ -376,8 +377,8 @@
         }
 
         /* ============================================================
-                   北门杯 广告弹窗 — 背景图片版
-                   ============================================================ */
+           北门杯 广告弹窗
+           ============================================================ */
         .ad-popup {
             position: fixed;
             bottom: 30px;
@@ -402,17 +403,16 @@
             font-family: 'Segoe UI', 'PingFang SC', sans-serif;
             color: #e8e0d0;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-            pointer-events: none;
+            pointer-events: auto;
             user-select: none;
             overflow: hidden;
-            /* 背景默认半透明，会由JS覆盖 */
+            cursor: pointer;
             background: rgba(10, 10, 16, 0.92);
         }
 
         .ad-popup.show {
             transform: translateX(0) scale(1);
             opacity: 1;
-            pointer-events: auto;
         }
 
         .ad-popup.closing {
@@ -422,7 +422,6 @@
             transition: transform 0.4s ease-in, opacity 0.35s ease;
         }
 
-        /* 旋转光晕边框 (保留) */
         .ad-popup::before {
             content: '';
             position: absolute;
@@ -451,7 +450,6 @@
             }
         }
 
-        /* 关闭按钮 */
         .ad-popup .ad-close {
             position: absolute;
             top: 10px;
@@ -480,7 +478,6 @@
             transform: rotate(90deg) scale(0.85);
         }
 
-        /* 标题文字：北门杯 */
         .ad-popup .ad-title {
             font-size: 2.2rem;
             font-weight: 900;
@@ -498,10 +495,8 @@
             margin-top: 2px;
             position: relative;
             z-index: 2;
-            /* 在背景之上 */
         }
 
-        /* 小字：辽宁最好用的杯子 */
         .ad-popup .ad-sub {
             font-size: 0.7rem;
             font-weight: 400;
@@ -516,19 +511,16 @@
             z-index: 2;
         }
 
-        /* 遮罩层（提高文字可读性） */
         .ad-popup::after {
             content: '';
             position: absolute;
             inset: 0;
             border-radius: 40px;
             background: rgba(10, 10, 16, 0.35);
-            /* 半透明遮罩 */
             pointer-events: none;
             z-index: 1;
         }
 
-        /* 响应式适配 */
         @media (max-width: 550px) {
             h1 {
                 font-size: 3.8rem;
@@ -675,9 +667,7 @@
         <span class="count loading" id="visitorCount">加载中</span>
     </div>
 
-    <!-- ============================================================
-    北门杯 广告弹窗 — 背景图片由开发者配置
-    ============================================================ -->
+    <!-- 北门杯广告弹窗 -->
     <div class="ad-popup" id="adPopup" role="dialog" aria-label="北门杯">
         <button class="ad-close" id="adClose" aria-label="关闭广告">✕</button>
         <div class="ad-title">北门杯</div>
@@ -685,16 +675,7 @@
     </div>
 
     <script>
-        // ================================================================
-        // 开发者配置区 — 自由修改背景图片链接
-        // 将 adBackgroundUrl 设置为你的图片 URL，留空则使用纯色背景
-        // ================================================================
-        var adBackgroundUrl = 'https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEZvwABaov6MHGPXhBWvVm_EmcNhAd9LwMAAporAAIPrmFUVH1aKNp_kFs9BA.jpg';
-
-        // ================================================================
-        // 以下为脚本逻辑，无需修改
-        // ================================================================
-
+        // 猫娘互动
         (function() {
             var speeches = [
                 "喵～ 你好呀！",
@@ -758,46 +739,41 @@
             }, { passive: true });
         })();
 
+        // IP 获取（国内可用）
         (function() {
             var ipEl = document.getElementById('visitorIp');
-
-            window.handleIP = function(data) {
-                if (data && data.ip) {
-                    ipEl.textContent = data.ip;
-                    ipEl.classList.remove('loading');
-                } else {
-                    ipEl.textContent = '获取失败';
-                    ipEl.classList.remove('loading');
-                }
-            };
-
             var timeout = setTimeout(function() {
                 if (ipEl.textContent === '获取中') {
-                    ipEl.textContent = '127.0.0.1<开玩笑:)>';
+                    ipEl.textContent = '无法获取';
                     ipEl.classList.remove('loading');
                 }
-            }, 5000);
+            }, 8000);
 
-            try {
-                var script = document.createElement('script');
-                script.src = 'https://api.ipify.org?format=jsonp&callback=handleIP';
-                script.async = true;
-                script.onerror = function() {
+            fetch('https://myip.ipip.net', { mode: 'cors' })
+                .then(function(response) {
+                    if (!response.ok) throw new Error('网络错误');
+                    return response.text();
+                })
+                .then(function(ip) {
+                    clearTimeout(timeout);
+                    ip = ip.trim();
+                    if (ip) {
+                        ipEl.textContent = ip;
+                        ipEl.classList.remove('loading');
+                    } else {
+                        throw new Error('无效IP');
+                    }
+                })
+                .catch(function() {
                     clearTimeout(timeout);
                     if (ipEl.textContent === '获取中') {
-                        ipEl.textContent = '127.0.0.1<开玩笑:)>';
+                        ipEl.textContent = '获取失败';
                         ipEl.classList.remove('loading');
                     }
-                };
-                document.head.appendChild(script);
-            } catch (e) {
-                clearTimeout(timeout);
-                ipEl.textContent = '127.0.0.1<开玩笑:)>';
-                ipEl.classList.remove('loading');
-            }
+                });
         })();
 
-        // 获取访问量
+        // 访问量统计
         (function() {
             var countEl = document.getElementById('visitorCount');
             var countApi = 'https://api.countapi.xyz/hit/beimen-nb/visits';
@@ -818,36 +794,30 @@
                 });
         })();
 
-        // ================================================================
-        // 北门杯 广告弹窗交互 — 支持背景图片
-        // ================================================================
+        // 广告弹窗交互
         (function() {
             var popup = document.getElementById('adPopup');
             var closeBtn = document.getElementById('adClose');
             var hasClosed = localStorage.getItem('beimen_ad_closed_v2') === 'true';
 
-            // 设置背景图片
-            if (adBackgroundUrl && adBackgroundUrl.trim() !== '') {
-                // 使用多重背景：图片 + 半透明遮罩（通过 linear-gradient 实现）
-                popup.style.background = `linear-gradient(rgba(10,10,16,0.4), rgba(10,10,16,0.4)), url(${adBackgroundUrl}) center/cover no-repeat`;
+            // 背景图片
+            var adBg = 'https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEZvwABaov6MHGPXhBWvVm_EmcNhAd9LwMAAporAAIPrmFUVH1aKNp_kFs9BA.jpg';
+            if (adBg) {
+                popup.style.background = 'linear-gradient(rgba(10,10,16,0.4), rgba(10,10,16,0.4)), url(' + adBg + ') center/cover no-repeat';
                 popup.style.border = '1px solid rgba(212,175,55,0.5)';
-            } else {
-                popup.style.background = 'rgba(10,10,16,0.92)';
             }
 
-            // 如果曾经关闭，直接隐藏
             if (hasClosed) {
                 popup.style.display = 'none';
                 return;
             }
 
-            // 延迟显示（5秒）
             var showTimer = setTimeout(function() {
                 popup.classList.add('show');
             }, 5000);
 
-            // 关闭函数
-            function closeAd() {
+            function closeAd(e) {
+                if (e) e.stopPropagation();
                 if (popup.classList.contains('closing')) return;
                 popup.classList.remove('show');
                 popup.classList.add('closing');
@@ -857,19 +827,17 @@
                 }, 450);
             }
 
-            // 只绑定X按钮关闭
             closeBtn.addEventListener('click', closeAd);
             closeBtn.addEventListener('touchend', function(e) {
                 e.preventDefault();
-                closeAd();
+                closeAd(e);
             });
 
-            // 阻止弹窗内部点击冒泡，避免误触
             popup.addEventListener('click', function(e) {
-                e.stopPropagation();
+                if (e.target.closest('.ad-close')) return;
+                window.open('http://beimenbeizinb.dpdns.org', '_blank');
             });
 
-            // 清理定时器
             window.addEventListener('beforeunload', function() {
                 clearTimeout(showTimer);
             });
